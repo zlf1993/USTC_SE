@@ -4,13 +4,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TreeSet;
 
 
 /**
  * 
  * PostEntity.java
  * @Author Docki
- * @CreatTime 2017年4月30日
+ * @CreateTime 2017年4月30日
  * @Updater Docki
  * @UpdateTime 2017年4月30日
  *
@@ -23,6 +24,7 @@ public class Post implements Comparable<Post>{
 	private String postContent;
 	private String postLabel;
 	private User user;
+	private TreeSet<Comment> PostComments;
 	
 	@Override
 	public int compareTo(Post post) {
@@ -37,6 +39,14 @@ public class Post implements Comparable<Post>{
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+
+	/**
+	 * @param postComments the postComments to set
+	 */
+	public void setPostComments(TreeSet<Comment> postComments) {
+		PostComments = postComments;
 	}
 
 	public int getPostID() {
@@ -95,6 +105,8 @@ public class Post implements Comparable<Post>{
 		this.user = user;
 	}
 	
-	
+	public TreeSet<Comment> getPostComments() {
+		return PostComments;
+	}
 	
 }

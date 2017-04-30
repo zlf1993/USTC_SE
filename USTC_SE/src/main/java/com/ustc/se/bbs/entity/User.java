@@ -1,13 +1,12 @@
 package com.ustc.se.bbs.entity;
 
-import java.util.Set;
 import java.util.TreeSet;
 
 /**
  * 
  * UserEntity.java
  * @Author Docki
- * @CreatTime 2017年4月30日
+ * @CreateTime 2017年4月30日
  * @Updater Docki
  * @UpdateTime 2017年4月30日
  *
