@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * .java 
+ * Reply.java 
  * @author zlf1993
  * @CreateTime 2017年4月30号
  * @Updater zlf1993
@@ -23,7 +23,7 @@ public class Reply implements Comparable<Reply>{
 	private String replyReciveName;
 	private String replyTime;
 	private String replyContent;
-		
+	private Comment comment;
 	@Override
 	public int compareTo(Reply reply) {
 		int res = 0;
@@ -40,6 +40,17 @@ public class Reply implements Comparable<Reply>{
 		return res;
 	}
 	
+	
+	public Comment getComment() {
+		return comment;
+	}
+
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
+
+
 	public int getReplyID() {
 		return replyID;
 	}

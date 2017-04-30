@@ -7,19 +7,11 @@ import java.util.Date;
 import java.util.TreeSet;
 
 /**
- * Comment.java 
- * @author 
- * @CreatTime 2017年4月30号
- * @Updater zlf1993
- * @UpdateTime 2917年4月30号
- *
- */
-/**
  * 
  * Comment.java
- * @Author Administrator
+ * @Author zlf1993
  * @CreateTime 2017年4月30号
- * @Updater Administrator
+ * @Updater zlf1993
  * @UpdateTime 2917年4月30号
  *
  */
@@ -31,6 +23,8 @@ public class Comment implements Comparable<Comment>{
 	private String commentFloor;
 	private String commentTime;
 	private String commentContent;
+	private Post post;
+	private User user;
 	private TreeSet<Reply> commentReply;
 	private TreeSet<Message> commentMessage;
 	
@@ -47,6 +41,27 @@ public class Comment implements Comparable<Comment>{
 		}	
 		return res;
 	}
+
+	
+	public Post getPost() {
+		return post;
+	}
+
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 	public int getCommentID() {
 		return commentID;
