@@ -12,7 +12,7 @@ import java.util.TreeSet;
  * @UpdateTime 2017年4月30日
  *
  */
-public class UserEntity {
+public class User {
 	private int userID;
 	private String userName;
 	private String userPassword;
