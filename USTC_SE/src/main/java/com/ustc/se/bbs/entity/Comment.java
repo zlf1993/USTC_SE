@@ -1,9 +1,5 @@
 package com.ustc.se.bbs.entity;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.TreeSet;
 
 /**
@@ -11,8 +7,8 @@ import java.util.TreeSet;
  * Comment.java
  * @Author zlf1993
  * @CreateTime 2017年4月30号
- * @Updater zlf1993
- * @UpdateTime 2917年4月30号
+ * @Updater Docki
+ * @UpdateTime 2017年5月1号
  *
  */
 
@@ -30,16 +26,7 @@ public class Comment implements Comparable<Comment>{
 	
 	@Override
 	public int compareTo(Comment comment) {
-		int res = 0;
-		DateFormat df = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-		try {
-			Date commentTime1 = df.parse(this.getCommentTime());
-			Date commentTime2 = df.parse(comment.getCommentTime());
-			res = commentTime1.compareTo(commentTime2);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}	
-		return res;
+		return this.getCommentID() - comment.getCommentID();
 	}
 
 	
