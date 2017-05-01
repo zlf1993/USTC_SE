@@ -9,11 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * .java 
+ * Reply.java 
  * @author zlf1993
  * @CreateTime 2017年4月30号
- * @Updater zlf1993
- * @UpdateTime 2917年4月30号
+ * @Updater Docki
+ * @UpdateTime 2017年5月1号
  *
  */
 public class Reply implements Comparable<Reply>{
@@ -23,15 +23,15 @@ public class Reply implements Comparable<Reply>{
 	private String replyReciveName;
 	private String replyTime;
 	private String replyContent;
-		
+	private Comment comment;
 	@Override
 	public int compareTo(Reply reply) {
 		int res = 0;
 		DateFormat df = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 		try {
-			Date replyTime1 = df.parse(this.replyTime);
+			Date replyTime1 = df.parse(this.getReplyTime());
 			Date replyTime2 = df.parse(reply.getReplyTime());
-			res = replyTime1.compareTo(replyTime2);
+			res = replyTime2.compareTo(replyTime1);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,6 +40,17 @@ public class Reply implements Comparable<Reply>{
 		return res;
 	}
 	
+	
+	public Comment getComment() {
+		return comment;
+	}
+
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
+
+
 	public int getReplyID() {
 		return replyID;
 	}

@@ -13,7 +13,7 @@ import java.util.Date;
  * @Author zlf1993
  * @CreateTime 2017年4月30号
  * @Updater zlf1993
- * @UpdateTime 2917年4月30号
+ * @UpdateTime 2017年4月30号
  *
  */
 public class Message implements Comparable<Message>{
@@ -23,6 +23,8 @@ public class Message implements Comparable<Message>{
 	private String messageSendName;
 	private String messageTime;
 	private String messageUnread;
+	private User user;
+	private Comment comment;
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
@@ -31,8 +33,8 @@ public class Message implements Comparable<Message>{
 		int res = 0;
 		DateFormat df = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 		try {
-			Date messageTime1 = df.parse(this.messageTime);
-			Date messageTime2 = df.parse(message.messageTime);
+			Date messageTime1 = df.parse(this.getMessageTime());
+			Date messageTime2 = df.parse(message.getMessageTime());
 			res = messageTime1.compareTo(messageTime2);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -40,6 +42,28 @@ public class Message implements Comparable<Message>{
 		}
 		return res;
 	}
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public Comment getComment() {
+		return comment;
+	}
+
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
+
+
 	public int getMessageID() {
 		return messageID;
 	}
