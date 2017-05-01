@@ -1,6 +1,6 @@
 /*
-SQLyog Trial v12.3.3 (64 bit)
-MySQL - 5.7.17-log : Database - ustc_bbs
+SQLyog Ultimate v12.09 (64 bit)
+MySQL - 5.7.17 : Database - ustc_bbs
 *********************************************************************
 */
 
@@ -43,14 +43,15 @@ DROP TABLE IF EXISTS `t_message`;
 CREATE TABLE `t_message` (
   `messageID` int(11) NOT NULL AUTO_INCREMENT,
   `userID` int(11) NOT NULL,
-  `messageSendName` int(11) NOT NULL,
+  `messageSendName` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `messageTime` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
-  `commentID` int(11) NOT NULL,
+  `postID` int(11) NOT NULL,
   `messageUnread` int(11) NOT NULL,
+  `content` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`messageID`),
-  KEY `FK_Comment_Message` (`commentID`),
   KEY `FK_User_Message` (`userID`),
-  CONSTRAINT `FK_Comment_Message` FOREIGN KEY (`commentID`) REFERENCES `t_comment` (`commentID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `FK_Post_Message` (`postID`),
+  CONSTRAINT `FK_Post_Message` FOREIGN KEY (`postID`) REFERENCES `t_post` (`postID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_User_Message` FOREIGN KEY (`userID`) REFERENCES `t_user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
