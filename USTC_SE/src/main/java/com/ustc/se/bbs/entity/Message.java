@@ -13,7 +13,7 @@ import java.util.Date;
  * @Author zlf1993
  * @CreateTime 2017年4月30号
  * @Updater zlf1993
- * @UpdateTime 2917年4月30号
+ * @UpdateTime 2017年4月30号
  *
  */
 public class Message implements Comparable<Message>{
