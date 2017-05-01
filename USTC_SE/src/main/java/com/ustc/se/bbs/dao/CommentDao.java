@@ -41,4 +41,28 @@ public interface CommentDao {
 	 * @return
 	 */
 	public TreeSet<Comment> selectCommentByPostIDAndUserID(int postID, int userID);
+	/**
+	 * 根据comment向回帖表插入一条记录
+	 * @return
+	 */
+	public int addComment(Comment comment);
+	/**
+	 * 根据comment更新一条回帖记录
+	 * @param comment
+	 * @return
+	 */
+	public int updateComment(Comment comment);
+	/**
+	 * 根据commentID删除一条回帖记录
+	 * @param commentID
+	 * @return
+	 */
+	public int deleteCommentByCommentID(int commentID);
+	/**
+	 * 根据userID和postID删除某一帖子中某一用户的所有回帖记录
+	 * @param userID postID
+	 * @return
+	 */
+	public int deleteCommentByUserID(int userID, int postID);
+	
 }
