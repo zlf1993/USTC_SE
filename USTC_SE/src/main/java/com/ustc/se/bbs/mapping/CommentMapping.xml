@@ -39,7 +39,7 @@
 	SELECT * FROM t_comment WHERE postID = #{postID} AND userID = #{userID}
 	</select>
 	
-	<select id="selectCommentByUserID" resultMap="commentResultMap">
+	<select id="selectCommentByUserID" parameterType="int" resultMap="commentResultMap">
 	SELECT * FROM t_comment WHERE userID = #{userID}
 	</select>
 	
