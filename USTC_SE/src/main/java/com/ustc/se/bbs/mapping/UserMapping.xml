@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ustc.se.bbs.dao.UserDao">
+	<resultMap type="com.ustc.se.bbs.entity.User" id="userResultMap">
+	<id column="userID" jdbcType="INTEGER" property="userID"/>
+	<result column="userName" jdbcType="VARCHAR" property="userName"/>
+	<result column="userPassword" jdbcType="VARCHAR" property="userPassword"/>
+	<result column="userEmail" jdbcType="VARCHAR" property="userEmail"/>
+	<result column="userAge" jdbcType="INTEGER" property="userAge"/>
+	<result column="userGender" jdbcType="VARCHAR" property="userGender"/>
+	<result column="userHeadPortrait" jdbcType="VARCHAR" property="userHeadPortrait"/>
+	<result column="userBirth" jdbcType="VARCHAR" property="userBirth"/>
+	<result column="userMessageCount" jdbcType="INTEGER" property="userMessageCount"/>
+	<!-- 配置一对多关系 -->
+	<!-- property: 实体类中的集合对象名称, ofType: 集合对象的泛型类型(即集合中存储的对象类型)  -->
+	<!-- select: 关联查询时需要的查询语句 (Dao中对应的方法名), column: 参数字段名-->
+	<collection property="userPosts" ofType="com.ustc.se.bbs.entity.Post" 
+	select="com.ustc.se.bbs.dao.PostDao.selectPostByUserID" column="userID" javaType="java.util.TreeSet">
+	</collection>
+	
+	<collection property="userComments" ofType="com.ustc.se.bbs.entity.Comment"
+	select="com.ustc.se.bbs.dao.CommentDao.selectCommentByUserID" column="userID" javaType="java.util.TreeSet">
+	</collection>
+	
+	<collection property="userMessages" ofType="com.ustc.se.bbs.entity.Message" 
+	select="com.ustc.se.bbs.dao.MessageDao.selectMessageByUserID" column="userID" javaType="java.util.TreeSet">
+	</collection>
+	</resultMap>
+	
+	<select id="selectUserByUserID" resultMap="userResultMap" parameterType="int">
+	SELECT * FROM t_user WHERE userID = #{userID}
+	</select>
+	
+	<select id="selectUserByUserName" resultMap="userResultMap" parameterType="java.lang.String">
+	SELECT * FROM t_user WHERE userName = #{userName}
+	</select>
+	
+	<insert id="addUser" parameterType="com.ustc.se.bbs.entity.User" keyProperty="userID" useGeneratedKeys="true">
+	INSERT INTO t_user (userName, userPassword, userEmail, userAge, userGender, userHeadPortrait, userBirth, userMessageCount)
+	VALUES(#{userName}, #{userPassword}, #{userEmail}, #{userAge}, #{userGender}, #{userHeadPortrait}, #{userBirth}, #{userMessageCount})
+	</insert>
+	
+	<update id="updateUser" parameterType="com.ustc.se.bbs.entity.User">
+	UPDATE t_user SET userName = #{userName}, userPassword = #{userPassword}, userEmail = #{userEmail}, 
+	userAge = #{userAge}, userGender = #{userGender}, userHeadPortrait = #{userHeadPortrait}, userBirth = #{userBirth}, userMessageCount = #{userMessageCount}
+	WHERE userID = #{userID}
+	</update>
+	
+	<delete id="deleteUserByUserID" parameterType="int">
+	DELETE FROM t_user WHERE userID = #{userID}
+	</delete>
+	
+	<delete id="deleteUserByUserName" parameterType="java.lang.String">
+	DELETE FROM t_user WHERE userName = #{userName}
+	</delete>
+</mapper> 

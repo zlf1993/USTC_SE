@@ -10,7 +10,7 @@ import com.ustc.se.bbs.entity.Comment;
  * @Author Docki
  * @CreateTime 2017年5月1日
  * @Updater Docki
- * @UpdateTime 2017年5月1日
+ * @UpdateTime 2017年5月2日
  *
  */
 public interface CommentDao {
@@ -35,12 +35,18 @@ public interface CommentDao {
 	 */
 	public TreeSet<Comment> selectCommentByPostIDAndIndex(int postID, int startIndex, int size);
 	/**
-	 * 根据postID和userID
+	 * 根据postID和userID查询某一发帖中某一用户的所有回帖
 	 * @param postID
 	 * @param userID
 	 * @return
 	 */
 	public TreeSet<Comment> selectCommentByPostIDAndUserID(int postID, int userID);
+	/**
+	 * 根据userID查询某一用户的所有回帖
+	 * @param userID
+	 * @return
+	 */
+	public TreeSet<Comment> selectCommentByUserID(int userID);
 	/**
 	 * 根据comment向回帖表插入一条记录
 	 * @return

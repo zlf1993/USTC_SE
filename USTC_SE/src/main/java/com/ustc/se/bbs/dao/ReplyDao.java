@@ -5,7 +5,6 @@ package com.ustc.se.bbs.dao;
 
 import java.util.TreeSet;
 
-import com.ustc.se.bbs.entity.Comment;
 import com.ustc.se.bbs.entity.Reply;
 
 /**
