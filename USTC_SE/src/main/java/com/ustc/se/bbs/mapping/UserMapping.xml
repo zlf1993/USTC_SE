@@ -3,29 +3,29 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ustc.se.bbs.dao.UserDao">
 	<resultMap type="com.ustc.se.bbs.entity.User" id="userResultMap">
-	<id column="userID" jdbcType="INTEGER" property="userID"/>
-	<result column="userName" jdbcType="VARCHAR" property="userName"/>
-	<result column="userPassword" jdbcType="VARCHAR" property="userPassword"/>
-	<result column="userEmail" jdbcType="VARCHAR" property="userEmail"/>
-	<result column="userAge" jdbcType="INTEGER" property="userAge"/>
-	<result column="userGender" jdbcType="VARCHAR" property="userGender"/>
-	<result column="userHeadPortrait" jdbcType="VARCHAR" property="userHeadPortrait"/>
-	<result column="userBirth" jdbcType="VARCHAR" property="userBirth"/>
-	<result column="userMessageCount" jdbcType="INTEGER" property="userMessageCount"/>
-	<!-- 配置一对多关系 -->
-	<!-- property: 实体类中的集合对象名称, ofType: 集合对象的泛型类型(即集合中存储的对象类型)  -->
-	<!-- select: 关联查询时需要的查询语句 (Dao中对应的方法名), column: 参数字段名-->
-	<collection property="userPosts" ofType="com.ustc.se.bbs.entity.Post" 
-	select="com.ustc.se.bbs.dao.PostDao.selectPostByUserID" column="userID" javaType="java.util.TreeSet">
-	</collection>
+		<id column="userID" jdbcType="INTEGER" property="userID"/>
+		<result column="userName" jdbcType="VARCHAR" property="userName"/>
+		<result column="userPassword" jdbcType="VARCHAR" property="userPassword"/>
+		<result column="userEmail" jdbcType="VARCHAR" property="userEmail"/>
+		<result column="userAge" jdbcType="INTEGER" property="userAge"/>
+		<result column="userGender" jdbcType="VARCHAR" property="userGender"/>
+		<result column="userHeadPortrait" jdbcType="VARCHAR" property="userHeadPortrait"/>
+		<result column="userBirth" jdbcType="VARCHAR" property="userBirth"/>
+		<result column="userMessageCount" jdbcType="INTEGER" property="userMessageCount"/>
+		<!-- 配置一对多关系 -->
+		<!-- property: 实体类中的集合对象名称, ofType: 集合对象的泛型类型(即集合中存储的对象类型)  -->
+		<!-- select: 关联查询时需要的查询语句 (Dao中对应的方法名), column: 参数字段名-->
+		<collection property="userPosts" ofType="com.ustc.se.bbs.entity.Post" 
+		select="com.ustc.se.bbs.dao.PostDao.selectPostByUserID" column="userID" javaType="java.util.TreeSet">
+		</collection>
 	
-	<collection property="userComments" ofType="com.ustc.se.bbs.entity.Comment"
-	select="com.ustc.se.bbs.dao.CommentDao.selectCommentByUserID" column="userID" javaType="java.util.TreeSet">
-	</collection>
+		<collection property="userComments" ofType="com.ustc.se.bbs.entity.Comment"
+		select="com.ustc.se.bbs.dao.CommentDao.selectCommentByUserID" column="userID" javaType="java.util.TreeSet">
+		</collection>
 	
-	<collection property="userMessages" ofType="com.ustc.se.bbs.entity.Message" 
-	select="com.ustc.se.bbs.dao.MessageDao.selectMessageByUserID" column="userID" javaType="java.util.TreeSet">
-	</collection>
+		<collection property="userMessages" ofType="com.ustc.se.bbs.entity.Message" 
+		select="com.ustc.se.bbs.dao.MessageDao.selectMessageByUserID" column="userID" javaType="java.util.TreeSet">
+		</collection>
 	</resultMap>
 	
 	<select id="selectUserByUserID" resultMap="userResultMap" parameterType="int">
