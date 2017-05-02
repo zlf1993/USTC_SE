@@ -8,7 +8,7 @@ import com.ustc.se.bbs.entity.User;
  * @Author Docki
  * @CreateTime 2017年4月30日
  * @Updater Docki
- * @UpdateTime 2017年4月30日
+ * @UpdateTime 2017年5月2日
  *
  */
 public interface UserDao {
@@ -48,6 +48,6 @@ public interface UserDao {
 	 * @param userName
 	 * @return
 	 */
-	public int deleteUserByUserName(int userName);
+	public int deleteUserByUserName(String userName);
 	
 }

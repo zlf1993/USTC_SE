@@ -2,6 +2,8 @@ package com.ustc.se.bbs.dao;
 
 import java.util.TreeSet;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ustc.se.bbs.entity.Post;
 
 /**
@@ -38,7 +40,7 @@ public interface PostDao {
 	 * @param size
 	 * @return TreeSet<Post>
 	 */
-	public TreeSet<Post> selectPostByIndex(int startIndex, int size);
+	public TreeSet<Post> selectPostByIndex(@Param("startIndex") int startIndex, @Param("size") int size);
 	/**
 	 * 根据post向发帖表插入一条数据
 	 * @param post
@@ -63,7 +65,7 @@ public interface PostDao {
 	 * @param userID
 	 * @return
 	 */
-	public int deletePostByPostTitleAndUserID(int postTitle, int userID);
+	public int deletePostByPostTitleAndUserID(@Param("postTitle") int postTitle, @Param("userID") int userID);
 	/**
 	 * 删除数据库中发帖时间小于postTime的数据(即删除postTime之前的所有发帖)
 	 * @param postTime

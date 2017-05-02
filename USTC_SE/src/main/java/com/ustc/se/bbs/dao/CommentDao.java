@@ -2,6 +2,8 @@ package com.ustc.se.bbs.dao;
 
 import java.util.TreeSet;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ustc.se.bbs.entity.Comment;
 
 /**
@@ -10,7 +12,7 @@ import com.ustc.se.bbs.entity.Comment;
  * @Author Docki
  * @CreateTime 2017年5月1日
  * @Updater Docki
- * @UpdateTime 2017年5月1日
+ * @UpdateTime 2017年5月2日
  *
  */
 public interface CommentDao {
@@ -33,14 +35,20 @@ public interface CommentDao {
 	 * @param size
 	 * @return TreeSet<Comment>
 	 */
-	public TreeSet<Comment> selectCommentByPostIDAndIndex(int postID, int startIndex, int size);
+	public TreeSet<Comment> selectCommentByPostIDAndIndex(@Param("postID") int postID, @Param("startIndex") int startIndex, @Param("size") int size);
 	/**
-	 * 根据postID和userID
+	 * 根据postID和userID查询某一发帖中某一用户的所有回帖
 	 * @param postID
 	 * @param userID
 	 * @return
 	 */
-	public TreeSet<Comment> selectCommentByPostIDAndUserID(int postID, int userID);
+	public TreeSet<Comment> selectCommentByPostIDAndUserID(@Param("postID") int postID, @Param("userID") int userID);
+	/**
+	 * 根据userID查询某一用户的所有回帖
+	 * @param userID
+	 * @return
+	 */
+	public TreeSet<Comment> selectCommentByUserID(int userID);
 	/**
 	 * 根据comment向回帖表插入一条记录
 	 * @return
@@ -63,6 +71,6 @@ public interface CommentDao {
 	 * @param userID postID
 	 * @return
 	 */
-	public int deleteCommentByUserID(int userID, int postID);
+	public int deleteCommentByUserID(@Param("userID") int userID, @Param("postID") int postID);
 	
 }

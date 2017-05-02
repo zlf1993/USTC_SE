@@ -8,7 +8,7 @@ import java.util.TreeSet;
  * @Author Docki
  * @CreateTime 2017年4月30日
  * @Updater Docki
- * @UpdateTime 2017年4月30日
+ * @UpdateTime 2017年5月2日
  *
  */
 public class User {
@@ -23,7 +23,7 @@ public class User {
 	private int userMessageCount;
 	private TreeSet<Post> userPosts;
 	private TreeSet<Comment> userComments;
-	private TreeSet<Message> userMessage;
+	private TreeSet<Message> userMessages;
 	
 	
 	
@@ -93,12 +93,13 @@ public class User {
 	public void setUserComments(TreeSet<Comment> userComments) {
 		this.userComments = userComments;
 	}
-	public TreeSet<Message> getUserMessage() {
-		return userMessage;
+	public TreeSet<Message> getUserMessages() {
+		return userMessages;
 	}
-	public void setUserMessage(TreeSet<Message> userMessage) {
-		this.userMessage = userMessage;
+	public void setUserMessages(TreeSet<Message> userMessages) {
+		this.userMessages = userMessages;
 	}
+	
 	
 	
 

@@ -24,7 +24,8 @@ public class Post implements Comparable<Post>{
 	private String postContent;
 	private String postLabel;
 	private User user;
-	private TreeSet<Comment> PostComments;
+	private TreeSet<Comment> postComments;
+	private TreeSet<Message> postMessages;
 	
 	@Override
 	public int compareTo(Post post) {
@@ -42,12 +43,7 @@ public class Post implements Comparable<Post>{
 	}
 
 
-	/**
-	 * @param postComments the postComments to set
-	 */
-	public void setPostComments(TreeSet<Comment> postComments) {
-		PostComments = postComments;
-	}
+
 
 	public int getPostID() {
 		return postID;
@@ -104,9 +100,35 @@ public class Post implements Comparable<Post>{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
+
+
+
 	public TreeSet<Comment> getPostComments() {
-		return PostComments;
+		return postComments;
 	}
+
+
+
+
+	public void setPostComments(TreeSet<Comment> postComments) {
+		this.postComments = postComments;
+	}
+
+
+
+
+	public TreeSet<Message> getPostMessages() {
+		return postMessages;
+	}
+
+
+
+
+	public void setPostMessages(TreeSet<Message> postMessages) {
+		this.postMessages = postMessages;
+	}
+	
+	
 	
 }

@@ -1,6 +1,4 @@
-/**
- * adsfafaddfasdfadfaf
- */
+
 package com.ustc.se.bbs.entity;
 
 import java.text.DateFormat;
@@ -22,13 +20,11 @@ public class Message implements Comparable<Message>{
 	private int commentID;
 	private String messageSendName;
 	private String messageTime;
-	private String messageUnread;
+	private int messageUnread;
 	private String messageContent;
 	private User user;
 	private Comment comment;
-	/* (non-Javadoc)
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
+
 	@Override
 	public int compareTo(Message message) {
 		int res = 0;
@@ -108,10 +104,10 @@ public class Message implements Comparable<Message>{
 	public void setMessageTime(String messageTime) {
 		this.messageTime = messageTime;
 	}
-	public String getMessageUnread() {
+	public int getMessageUnread() {
 		return messageUnread;
 	}
-	public void setMessageUnread(String messageUnread) {
+	public void setMessageUnread(int messageUnread) {
 		this.messageUnread = messageUnread;
 	}
 	
