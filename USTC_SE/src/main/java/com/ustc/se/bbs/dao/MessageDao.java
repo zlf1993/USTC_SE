@@ -27,11 +27,17 @@ public interface MessageDao {
 	 */
 	public TreeSet<Message> selectAllMessage();
 	/**
-	 * 过呢句用户ID选择其站内信
+	 * 根据userID选择其站内信
 	 * @param UserID
 	 * @return
 	 */
-	public TreeSet<Message> selectMessageByUserID(int UserID);
+	public TreeSet<Message> selectMessageByUserID(int userID);
+	/**
+	 * 根据postID查询站内信
+	 * @param postID
+	 * @return
+	 */
+	public TreeSet<Message> selectMessageByPostID(int postID);
 	/**
 	 * 根据已读和未读状态选择站内信
 	 * @param massageunread

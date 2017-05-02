@@ -5,14 +5,16 @@ package com.ustc.se.bbs.dao;
 
 import java.util.TreeSet;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ustc.se.bbs.entity.Reply;
 
 /**
  * ReplyDao.java
  * @Author zlf1993
  * @CreatTime 2017年5月1号
- * @Updater zlf1993
- * @UpdateTime 2917年5月1号
+ * @Updater Docki
+ * @UpdateTime 2017年5月2号
  *
  */
 public interface ReplyDao {
@@ -41,7 +43,7 @@ public interface ReplyDao {
 	 * @param size
 	 * @return TreeSet<Reply>
 	 */
-	public TreeSet<Reply> selectReplyByCommentIDAndIndex(int commentID,int startIndex,int size);
+	public TreeSet<Reply> selectReplyByCommentIDAndIndex(@Param("commentID") int commentID, @Param("startIndex") int startIndex, @Param("size") int size);
 	/**
 	 * 更新一条reply
 	 * @param reply

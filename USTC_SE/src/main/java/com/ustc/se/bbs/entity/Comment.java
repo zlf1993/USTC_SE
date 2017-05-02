@@ -22,7 +22,6 @@ public class Comment implements Comparable<Comment>{
 	private Post post;
 	private User user;
 	private TreeSet<Reply> commentReply;
-	private TreeSet<Message> commentMessage;
 	
 	@Override
 	public int compareTo(Comment comment) {
@@ -106,12 +105,5 @@ public class Comment implements Comparable<Comment>{
 		this.commentReply = commentReply;
 	}
 
-	public TreeSet<Message> getCommentMessage() {
-		return commentMessage;
-	}
-
-	public void setCommentMessage(TreeSet<Message> commentMessage) {
-		this.commentMessage = commentMessage;
-	}
 		
 }
