@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ustc.se.bbs.dao.ReplyDao">
+	<resultMap type="com.ustc.se.bbs.entity.Reply" id="replyResultMap">
+		<id column="replyID" jdbcType="INTEGER" property="replyID"/>
+		<result column="replySendName" jdbcType="VARCHAR" property="replySendName"/>
+		<result column="replyTime" jdbcType="VARCHAR" property="replyTime"/>
+		<result column="replyContent" jdbcType="VARCHAR" property="replyContent"/>
+		<result column="replyReceiveName" jdbcType="VARCHAR" property="replyReceiveName"/>
+		
+		<!-- 配置多对一关系 -->
+		<association property="comment" javaType="com.ustc.se.bbs.entity.Comment" 
+		select="com.ustc.se.bbs.dao.CommentDao.selectCommentByCommentID" column="commentID">
+		</association>
+	</resultMap>
+	
+	<select id="selectReplyByReplyID" parameterType="int" resultMap="replyResultMap">
+	SELECT * FROM t_reply WHERE replyID = #{replyID}
+	</select>
+	
+	<select id="selectReplyByCommentID" parameterType="int" resultMap="replyResultMap">
+	SELECT * FROM t_reply WHERE commentID = #{commentID}
+	</select>
+	
+	<select id="selectReplyByCommentIDAndIndex" resultMap="replyResultMap">
+	SELECT * FROM t_reply WHERE commentID = #{commentID} ORDER BY replyID ASE LIMIT #{startIndex}, #{size}
+	</select>
+	
+	<insert id="addReply" parameterType="com.ustc.se.bbs.entity.Reply" keyProperty="replyID" useGeneratedKeys="true">
+	INSERT INTO t_reply (replySendName, replyReceiveName, replyTime, replytContent, commentID) VALUES (#{replySendName}, #{replyReceiveName}, 
+	#{replyTime}, #{replyContent}, #{comment.commentID})
+	</insert>
+	
+	<update id="updateReply" parameterType="com.ustc.se.bbs.entity.Reply">
+	UPDATE t_reply SET replySendName = #{replySendName}, replyTime = #{replyTime}, replyContent = #{replyContent}, replyReceiveNmae = #{replyReceiveName}, 
+	commentID = #{comment.commentID} WHERE replyID = #{replyID}
+	</update>
+	
+	<delete id="deleteReplyByReplyID" parameterType="int">
+	DELETE FROM t_reply WHERE replyID = #{replyID}
+	</delete>
+</mapper>
