@@ -8,7 +8,7 @@ import java.util.TreeSet;
  * @Author zlf1993
  * @CreateTime 2017年4月30号
  * @Updater Docki
- * @UpdateTime 2017年5月1号
+ * @UpdateTime 2017年5月2号
  *
  */
 
@@ -16,7 +16,7 @@ public class Comment implements Comparable<Comment>{
 	private int commentID;
 	private int postID;
 	private int userID;
-	private String commentFloor;
+	private int commentFloor;
 	private String commentTime;
 	private String commentContent;
 	private Post post;
@@ -74,11 +74,11 @@ public class Comment implements Comparable<Comment>{
 		this.userID = userID;
 	}
 
-	public String getCommentFloor() {
+	public int getCommentFloor() {
 		return commentFloor;
 	}
 
-	public void setCommentFloor(String commentFloor) {
+	public void setCommentFloor(int commentFloor) {
 		this.commentFloor = commentFloor;
 	}
 

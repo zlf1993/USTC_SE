@@ -12,8 +12,8 @@ import java.util.Date;
  * Message.java
  * @Author zlf1993
  * @CreateTime 2017年4月30号
- * @Updater zlf1993
- * @UpdateTime 2017年4月30号
+ * @Updater Docki
+ * @UpdateTime 2017年5月2号
  *
  */
 public class Message implements Comparable<Message>{
@@ -23,6 +23,7 @@ public class Message implements Comparable<Message>{
 	private String messageSendName;
 	private String messageTime;
 	private String messageUnread;
+	private String messageContent;
 	private User user;
 	private Comment comment;
 	/* (non-Javadoc)
@@ -35,7 +36,7 @@ public class Message implements Comparable<Message>{
 		try {
 			Date messageTime1 = df.parse(this.getMessageTime());
 			Date messageTime2 = df.parse(message.getMessageTime());
-			res = messageTime1.compareTo(messageTime2);
+			res = messageTime2.compareTo(messageTime1);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,6 +45,19 @@ public class Message implements Comparable<Message>{
 	}
 	
 	
+	
+	public String getMessageContent() {
+		return messageContent;
+	}
+
+
+
+	public void setMessageContent(String messageContent) {
+		this.messageContent = messageContent;
+	}
+
+
+
 	public User getUser() {
 		return user;
 	}

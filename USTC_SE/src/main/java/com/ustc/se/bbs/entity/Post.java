@@ -13,7 +13,7 @@ import java.util.TreeSet;
  * @Author Docki
  * @CreateTime 2017年4月30日
  * @Updater Docki
- * @UpdateTime 2017年4月30日
+ * @UpdateTime 2017年5月2日
  *
  */
 public class Post implements Comparable<Post>{
@@ -33,7 +33,7 @@ public class Post implements Comparable<Post>{
 		try {
 			Date postTime1 = df.parse(this.getPostTime());
 			Date postTime2 = df.parse(post.getPostTime());
-			res = postTime1.compareTo(postTime2);
+			res = postTime2.compareTo(postTime1);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
