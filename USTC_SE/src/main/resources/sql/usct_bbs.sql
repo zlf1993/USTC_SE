@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v12.09 (64 bit)
-MySQL - 5.7.17 : Database - ustc_bbs
+SQLyog Trial v12.3.3 (64 bit)
+MySQL - 5.7.17-log : Database - ustc_bbs
 *********************************************************************
 */
 
@@ -47,7 +47,7 @@ CREATE TABLE `t_message` (
   `messageTime` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `postID` int(11) NOT NULL,
   `messageUnread` int(11) NOT NULL,
-  `content` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `messageContent` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`messageID`),
   KEY `FK_User_Message` (`userID`),
   KEY `FK_Post_Message` (`postID`),
