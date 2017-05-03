@@ -54,7 +54,7 @@
 	</delete>
 	
 	<delete id="deleteMessageByTime" parameterType="java.lang.String">
-	DELETE FROM t_message WHERE messageTime &gt;= #{messageTime}
+	DELETE FROM t_message WHERE messageTime &lt;= #{messageTime}
 	</delete>
 	
 	<delete id="deleteMessageUnread" parameterType="int">
