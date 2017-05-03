@@ -32,7 +32,7 @@
 	</select>
 	
 	<select id="selectCommentByPostIDAndIndex" resultMap="commentResultMap">
-	SELECT * FROM t_comment WHERE postID = #{postID} ORDER BY commentID ASE LIMIT #{startIndex}, #{size}
+	SELECT * FROM t_comment WHERE postID = #{postID} ORDER BY commentID ASC LIMIT #{startIndex}, #{size}
 	</select>
 	
 	<select id="selectCommentByPostIDAndUserID" resultMap="commentResultMap">

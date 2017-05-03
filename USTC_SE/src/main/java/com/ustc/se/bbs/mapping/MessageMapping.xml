@@ -19,7 +19,7 @@
 		</association>
 	</resultMap>
 		
-		<select id="selectMessageByMessageID" parameterType="int" resultMap="messageResultMap">
+	<select id="selectMessageByMessageID" parameterType="int" resultMap="messageResultMap">
 	SELECT * FROM t_message WHERE messageID = #{messageID}
 	</select>
 	
@@ -27,15 +27,15 @@
 	SELECT * FROM t_message
 	</select>
 	
-	<select id="selectMessageByUserID" resultMap="messageResultMap">
+	<select id="selectMessageByUserID" parameterType="int" resultMap="messageResultMap">
 	SELECT * FROM t_message WHERE userID = #{userID}
 	</select>
 	
-	<select id="selectMessageByPostID" resultMap="messageResultMap">
+	<select id="selectMessageByPostID" parameterType="int" resultMap="messageResultMap">
 	SELECT * FROM t_message WHERE postID = #{postID}
 	</select>
 	
-	<select id="selectMessageByReadStatu" resultMap="messageResultMap">
+	<select id="selectMessageByReadStatus" parameterType="int" resultMap="messageResultMap">
 	SELECT * FROM t_message WHERE messageUnread = #{messageUnread}
 	</select>
 	
@@ -53,11 +53,11 @@
 	DELETE FROM t_message WHERE messageID = #{messageID}
 	</delete>
 	
-	<delete id="deleteMessageByTime">
-	DELETE FROM t_message WHERE messageTime >= #{messageTime}
+	<delete id="deleteMessageByTime" parameterType="java.lang.String">
+	DELETE FROM t_message WHERE messageTime &gt;= #{messageTime}
 	</delete>
 	
-	<delete id="deleteMessageUnread">
+	<delete id="deleteMessageUnread" parameterType="int">
 	DELETE FROM t_message WHERE messageUnread = #{messageUnread}
 	</delete>
 </mapper>		

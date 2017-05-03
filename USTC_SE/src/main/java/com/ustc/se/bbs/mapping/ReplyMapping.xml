@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="selectReplyByCommentIDAndIndex" resultMap="replyResultMap">
-	SELECT * FROM t_reply WHERE commentID = #{commentID} ORDER BY replyID ASE LIMIT #{startIndex}, #{size}
+	SELECT * FROM t_reply WHERE commentID = #{commentID} ORDER BY replyID ASC LIMIT #{startIndex}, #{size}
 	</select>
 	
 	<insert id="addReply" parameterType="com.ustc.se.bbs.entity.Reply" keyProperty="replyID" useGeneratedKeys="true">

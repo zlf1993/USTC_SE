@@ -10,8 +10,8 @@ import com.ustc.se.bbs.entity.Message;
  *MessageDao.java
  *@Author Administrator
  *CreateTime 下午11:26:16
- *Updater Administrator
- *UpdateTime 下午11:26:16
+ *Updater Docki
+ *UpdateTime 2017-05-03
  */
 public interface MessageDao {
 	
@@ -43,7 +43,7 @@ public interface MessageDao {
 	 * @param massageunread
 	 * @return
 	 */
-	public TreeSet<Message> selectMessageByReadStatu(int massageunread);
+	public TreeSet<Message> selectMessageByReadStatus(int massageunread);
 	/**
 	 * 增加一条站内信信息
 	 * @param message
@@ -64,10 +64,10 @@ public interface MessageDao {
 	public int deleteMessageByMeaasgeID(int messageID);
 	/**
 	 * 根据时间删除站内信
-	 * @param time
+	 * @param messageTime
 	 * @return
 	 */
-	public int deleteMessageByTime(String time);
+	public int deleteMessageByTime(String messageTime);
 	/**
 	 * 根据阅读状态删除站内信
 	 * @param messageUnread
