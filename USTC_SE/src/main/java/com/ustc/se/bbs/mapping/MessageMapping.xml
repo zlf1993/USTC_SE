@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ustc.se.bbs.dao.MessageDao">
+	<resultMap type="com.ustc.se.bbs.entity.Message" id="messageResultMap">
+		<id column="messageID" jdbcType="INTEGER" property="messageID"/>
+		<result column="messageSendName" jdbcType="VARCHAR" property="messageSendName"/>
+		<result column="messageTime" jdbcType="VARCHAR" property="messageTime"/>
+		<result column="messageUnread" jdbcType="INTEGAR" property="messageUnread"/>
+		<result column="messageContent" jdbcType="VARCHAR" property="messageContent"/>
+		
+		<!-- 配置多对一关系 -->
+		<association property="user" javaType="com.ustc.se.bbs.entity.User" 
+		select="com.ustc.se.bbs.dao.UserDao.selectUserByUserID" column="userID">
+		</association>
+		
+		<association property="post" javaType="com.ustc.se.bbs.entity.Post" 
+		select="com.ustc.se.bbs.dao.PostDao.selectPostByPostID" column="postID">
+		</association>
+	</resultMap>
+		
+	<select id="selectMessageByMessageID" parameterType="int" resultMap="messageResultMap">
+	SELECT * FROM t_message WHERE messageID = #{messageID}
+	</select>
+	
+	<select id="selectAllMessage" resultMap="messageResultMap">
+	SELECT * FROM t_message
+	</select>
+	
+	<select id="selectMessageByUserID" parameterType="int" resultMap="messageResultMap">
+	SELECT * FROM t_message WHERE userID = #{userID}
+	</select>
+	
+	<select id="selectMessageByPostID" parameterType="int" resultMap="messageResultMap">
+	SELECT * FROM t_message WHERE postID = #{postID}
+	</select>
+	
+	<select id="selectMessageByReadStatus" parameterType="int" resultMap="messageResultMap">
+	SELECT * FROM t_message WHERE messageUnread = #{messageUnread}
+	</select>
+	
+	<insert id="addMessage" parameterType="com.ustc.se.bbs.entity.Message" keyProperty="messageID" useGeneratedKeys="true">
+	INSERT INTO t_message (messageSendName, messageTime, messageUnread, messageContent, postID, userID) VALUES (#{messageSendName}, #{messageTime}, 
+	#{messageUnread}, #{messageContent}, #{post.postID}, #{user.userID})
+	</insert>
+	
+	<update id="updateMessage" parameterType="com.ustc.se.bbs.entity.Message">
+	UPDATE t_message SET messageSendName = #{messageSendName}, messageTime = #{messageTime}, messageUnread = #{messageUnread}, messageContent = #{messageContent}, 
+	postID = #{post.postID}, userID = #{user.userID} WHERE messageID = #{messageID}
+	</update>
+	
+	<delete id="deleteMessageByMeaasgeID" parameterType="int">
+	DELETE FROM t_message WHERE messageID = #{messageID}
+	</delete>
+	
+	<delete id="deleteMessageByTime" parameterType="java.lang.String">
+	DELETE FROM t_message WHERE messageTime &lt;= #{messageTime}
+	</delete>
+	
+	<delete id="deleteMessageUnread" parameterType="int">
+	DELETE FROM t_message WHERE messageUnread = #{messageUnread}
+	</delete>
+</mapper>		

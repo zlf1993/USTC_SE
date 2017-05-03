@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ustc.se.bbs.dao.CommentDao">
+	<resultMap type="com.ustc.se.bbs.entity.Comment" id="commentResultMap">
+		<id column="commentID" jdbcType="INTEGER" property="commentID"/>
+		<result column="commentFloor" jdbcType="INTEGER" property="commentFloor"/>
+		<result column="commentTime" jdbcType="VARCHAR" property="commentTime"/>
+		<result column="commentContent" jdbcType="TEXT" property="commentContent"/>
+		
+		<!-- 配置多对一关系 -->
+		<association property="user" javaType="com.ustc.se.bbs.entity.User" 
+		select="com.ustc.se.bbs.dao.UserDao.selectUserByUserID" column="userID">
+		</association>
+		
+		<association property="post" javaType="com.ustc.se.bbs.entity.Post" 
+		select="com.ustc.se.bbs.dao.PostDao.selectPostByPostID" column="postID">
+		</association>
+		
+		<!-- 配置一对多关系 -->
+		<collection property="commentReply" ofType="com.ustc.se.bbs.entity.Reply" 
+		select="com.ustc.se.bbs.dao.ReplyDao.selectReplyByCommentID" column="commentID" javaType="java.util.TreeSet">
+		</collection>
+	</resultMap>
+	
+	<select id="selectCommentByCommentID" parameterType="int" resultMap="commentResultMap">
+	SELECT * FROM t_comment WHERE commentID = #{commentID}
+	</select>
+	
+	<select id="selectCommentByPostID" parameterType="int" resultMap="commentResultMap">
+	SELECT * FROM t_comment WHERE postID = #{postID}
+	</select>
+	
+	<select id="selectCommentByPostIDAndIndex" resultMap="commentResultMap">
+	SELECT * FROM t_comment WHERE postID = #{postID} ORDER BY commentID ASC LIMIT #{startIndex}, #{size}
+	</select>
+	
+	<select id="selectCommentByPostIDAndUserID" resultMap="commentResultMap">
+	SELECT * FROM t_comment WHERE postID = #{postID} AND userID = #{userID}
+	</select>
+	
+	<select id="selectCommentByUserID" parameterType="int" resultMap="commentResultMap">
+	SELECT * FROM t_comment WHERE userID = #{userID}
+	</select>
+	
+	<insert id="addComment" parameterType="com.ustc.se.bbs.entity.Comment" keyProperty="commentID" useGeneratedKeys="true">
+	INSERT INTO t_comment (commentFloor, commentTime, commentContent, postID, userID) VALUES (#{commentFloor}, #{commentTime}, 
+	#{commentContent}, #{post.postID}, #{user.userID})
+	</insert>
+	
+	<update id="updateComment" parameterType="com.ustc.se.bbs.entity.Comment">
+	UPDATE t_comment SET commentFloor = #{commentFloor}, commentTime = #{commentTime}, commentContent = #{commentContent}, 
+	postID = #{post.postID}, userID = #{user.userID} WHERE commentID = #{commentID}
+	</update>
+	
+	<delete id="deleteCommentByCommentID" parameterType="int">
+	DELETE FROM t_comment WHERE commentID = #{commentID}
+	</delete>
+	
+	<delete id="deleteCommentByUserID">
+	DELETE FROM t_comment WHERE postID = #{postID} AND userID = #{userID}
+	</delete>
+</mapper>

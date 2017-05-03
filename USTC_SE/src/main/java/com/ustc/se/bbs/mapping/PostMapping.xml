@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ustc.se.bbs.dao.PostDao">
+	<!-- 定义Post -->
+	<resultMap type="com.ustc.se.bbs.entity.Post" id="postResultMap">
+		<id column="postID" jdbcType="INTEGER" property="postID"/>
+		<result column="postTitle" jdbcType="VARCHAR" property="postTitle"/>
+		<result column="postTime" jdbcType="VARCHAR" property="postTime"/>
+		<result column="postHits" jdbcType="INTEGER" property="postHits"/>
+		<result column="postContent" jdbcType="TEXT" property="postContent"/>
+		<result column="postLabel" jdbcType="VARCHAR" property="postLabel"/>
+		<!-- 配置多对一关系(一个Post对应一个User) -->
+		<association property="user" javaType="com.ustc.se.bbs.entity.User"
+		select="com.ustc.se.bbs.dao.UserDao.selectUserByUserID" column="userID">
+		</association>
+		<!-- 配置一对多关系 -->
+		<collection property="postMessages" ofType="com.ustc.se.bbs.entity.Message"
+		select="com.ustc.se.bbs.dao.MessageDao.selectMessageByPostID" column="postID" javaType="java.util.TreeSet">
+		</collection>
+		
+		<collection property="postComments" ofType="com.ustc.se.bbs.entity.Comment"
+		select="com.ustc.se.bbs.dao.CommentDao.selectCommentByPostID" column="postID" javaType="java.util.TreeSet">
+		</collection>
+	</resultMap>
+	
+	<select id="selectPostByPostID" parameterType="int" resultMap="postResultMap">
+	SELECT * FROM t_post WHERE postID = #{postID}
+	</select>
+	
+	<select id="selectAllPost" resultMap="postResultMap">
+	SELECT * FROM t_post
+	</select>
+	
+	<select id="selectPostByUserID" parameterType="int" resultMap="postResultMap">
+	SELECT * FROM t_post WHERE userID = #{userID}
+	</select>
+	
+	<select id="selectPostByIndex" resultMap="postResultMap">
+	SELECT * FROM t_post ORDER BY postID DESC LIMIT #{startIndex}, #{size} 
+	</select>
+	
+	<insert id="addPost" parameterType="com.ustc.se.bbs.entity.Post" keyProperty="postID" useGeneratedKeys="true">
+	INSERT INTO t_post (postTitle, postTime, postHits, postContent, postLabel, userID) VALUES 
+	(#{postTitle}, #{postTime}, #{postHits}, #{postContent}, #{postLabel}, #{user.userID})
+	</insert>
+	
+	<update id="updatePost" parameterType="com.ustc.se.bbs.entity.Post">
+	UPDATE t_post SET postTitle = #{postTitle}, postTime = #{postTime}, postHits = #{postHits}, 
+	postContent = #{postContent}, postLabel = #{postLabel}, userID = #{user.userID} WHERE postID = #{postID}
+	</update>
+	
+	<delete id="deletePostByPostID" parameterType="int">
+	DELETE FROM t_post WHERE postID = #{postID}
+	</delete>
+	
+	<delete id="deletePostByPostTitleAndUserID">
+	DELETE FROM t_post WHERE postTitle = #{postTitle} AND userID = #{userID}
+	</delete>
+	
+	<delete id="deletePostByPostTime" parameterType="java.lang.String">
+	DELETE FROM t_post WHERE postTime &lt;= #{postTime}
+	</delete>
+</mapper>
